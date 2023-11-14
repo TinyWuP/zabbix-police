@@ -9,9 +9,7 @@
 ①产生的所有告警均由zabbix的actions调用脚本推入缓存redis当中；
 ②脚本将每分钟(crontab)去redis中拉取数据，根据定义好的一系列规则进行分析、合并；
 ③根据预先定义好的规则将报警通过定义好的方式发送给相关人员；
-
-![logo](https://github.com/TinyWuP/zabbix-police/blob/master/zabbix%E6%94%B6%E6%95%9B-%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
-
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 zabbix收敛-流程图
 
 二、设置Zabbix
@@ -19,10 +17,10 @@ zabbix收敛-流程图
 仅传递subject
 我这里定义了3个Mediatype 分别用于发送邮件、短信、企业微信(具体可自行调整) （3个除了Name不一样之外其他配置(Script name/Script parameters)保持一致）
 脚本 “zabbix-police/police.py” 主要功能是将Subject(Eventid)写入Redis，后面会写到
-Media type 配置
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-Mediatype%E9%85%8D%E7%BD%AE.png)
 Media type 配置
 
-zabbix收敛-多个Mediatypes
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-%E5%A4%9A%E4%B8%AAMediatypes.png)
 zabbix收敛-多个Mediatypes
 2. 配置Actions
 我这里以每个Trigger severity一个Actions举例。（可以根据不同的HostGroup或者其他条件自行配置多个actions）
@@ -65,16 +63,16 @@ eventid|{EVENT.ID}
 action|{ACTION.NAME}
 eventage|{EVENT.AGE}
 eventtime|{EVENT.DATE} {EVENT.TIME}
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-%E5%A4%9A%E4%B8%AAActions.png)
 zabbix收敛-多个Actions
-zabbix收敛-多个Actions
 
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-Actions-%E6%9D%A1%E4%BB%B6%E9%85%8D%E7%BD%AE.png)
 zabbix收敛-Actions-条件配置
-zabbix收敛-Actions-条件配置
 
-zabbix收敛-Actions-Operations配置
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-Actions-Operations%E9%85%8D%E7%BD%AE.png)
 zabbix收敛-Actions-Operations配置
 
-zabbix收敛-Actions-Recovery配置
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-Actions-Recovery%E9%85%8D%E7%BD%AE.png)
 zabbix收敛-Actions-Recovery配置
 
 三、配置 Zabbix 服务器
@@ -107,11 +105,11 @@ Bash
 [root@zabbix-server01 zabbix-police]$ crontab -l 
 * * * * * /usr/bin/python /etc/zabbix/alertscripts/zabbix-police/allpolice.py
 四、告警效果
-zabbix收敛-邮件告警
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-%E9%82%AE%E4%BB%B6%E5%91%8A%E8%AD%A6.png)
 zabbix收敛-邮件告警
 
-zabbix收敛-企业微信告警
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%91%8A%E8%AD%A6.png)
 zabbix收敛-企业微信告警
 
-zabbix收敛-短信告警
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/img/zabbix%E6%94%B6%E6%95%9B-%E7%9F%AD%E4%BF%A1%E5%91%8A%E8%AD%A6.png)
 zabbix收敛-短信告警
