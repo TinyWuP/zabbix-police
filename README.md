@@ -9,7 +9,8 @@
 ①产生的所有告警均由zabbix的actions调用脚本推入缓存redis当中；
 ②脚本将每分钟(crontab)去redis中拉取数据，根据定义好的一系列规则进行分析、合并；
 ③根据预先定义好的规则将报警通过定义好的方式发送给相关人员；
-![logo]([https://assets.zabbix.com/img/logo/zabbix_logo_500x131.png](https://github.com/TinyWuP/zabbix-police/blob/master/zabbix%E6%94%B6%E6%95%9B-%E6%B5%81%E7%A8%8B%E5%9B%BE.png))
+
+![logo](https://github.com/TinyWuP/zabbix-police/blob/master/zabbix%E6%94%B6%E6%95%9B-%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
 zabbix收敛-流程图
 
